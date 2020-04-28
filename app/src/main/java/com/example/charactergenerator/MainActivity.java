@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public int getRandom(int start, int end) {
+        return start + (int)(Math.random() * ((end - start) + 1));
+    }
+
     private void task() {
         // Instantiate the RequestQueue.
         final TextView textView = findViewById(R.id.text_space);
@@ -47,16 +52,19 @@ public class MainActivity extends AppCompatActivity {
 // Request a string response from the provided URL.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                    int c;
-
+                    int endVal;
+                    //
+                    int rand;
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            c = response.getInt("count");
+                            endVal = response.getInt("count");
+                            // jason c = response
+                            rand = getRandom(0, endVal);
                         } catch (JSONException e) {
                             textView.setText("Response: " + e);
                         }
-                        textView.setText("Response: " + c);
+                        textView.setText("Response: " + rand);
                     }
                 }, new Response.ErrorListener() {
             @Override
