@@ -13,4 +13,12 @@
         android:text="Create Character">
     </Button>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_space"
+        android:layout_below="@id/gen_btn"
+        android:text="Info">
+    </TextView>
+
 </RelativeLayout>

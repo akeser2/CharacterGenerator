@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,37 +34,39 @@ public class MainActivity extends AppCompatActivity {
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                moveToResult();
                 task();
             }
         });
     }
-//    private void moveToResult() {
-//        Intent intent = new Intent(this, ResultScreen.class);
-//        startActivity(intent);
-//    }
     private void task() {
-        test = findViewById(R.id.text_space);
-        String url = "https://www.dnd5eapi.co/api/conditions/blinded";
-// Instantiate the RequestQueue.
+        // Instantiate the RequestQueue.
+        final TextView textView = findViewById(R.id.text_space);
         RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="https://www.dnd5eapi.co/api/classes";
 
 // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    int c;
+
                     @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        test.setText("Response is: " + response.substring(0, 500));
+                    public void onResponse(JSONObject response) {
+                        try {
+                            c = response.getInt("count");
+                        } catch (JSONException e) {
+                            textView.setText("Response: " + e);
+                        }
+                        textView.setText("Response: " + c);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                test.setText("That didn't work!");
+                System.out.println(error);
+                textView.setText("That didn't work!");
             }
         });
 
 // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+        queue.add(jsonObjectRequest);
     }
 }
