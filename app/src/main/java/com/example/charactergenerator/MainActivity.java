@@ -23,8 +23,6 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     Button generate;
-    TextView test;
-    Button testB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 // Request a string response from the provided URL.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    //Variables needed to get down to specific item
                     JSONArray classList;
                     JSONObject classInfo;
                     String className;
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            //needed to see if item exists
                             classList = response.getJSONArray("results");
                             classInfo = classList.getJSONObject(selection);
                             className = classInfo.getString("name");
