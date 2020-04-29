@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,15 +31,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final Logic logic = new Logic();
         generate = findViewById(R.id.gen_btn);
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                task();
+                int classRandom = logic.getRandom(0, 11);
+                task(classRandom);
             }
         });
     }
-    private void task() {
+    private void task(final int selection) {
         // Instantiate the RequestQueue.
         final TextView textView = findViewById(R.id.text_space);
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -47,16 +50,21 @@ public class MainActivity extends AppCompatActivity {
 // Request a string response from the provided URL.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                    int c;
+                    JSONArray classList;
+                    JSONObject classInfo;
+                    String className;
+
 
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            c = response.getInt("count");
+                            classList = response.getJSONArray("results");
+                            classInfo = classList.getJSONObject(selection);
+                            className = classInfo.getString("name");
                         } catch (JSONException e) {
                             textView.setText("Response: " + e);
                         }
-                        textView.setText("Response: " + c);
+                        textView.setText("Response: " + className);
                     }
                 }, new Response.ErrorListener() {
             @Override
