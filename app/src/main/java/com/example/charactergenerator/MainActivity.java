@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            //needed to see if item exists
+                            //needed to see if item exist
                             classList = response.getJSONArray("results");
                             classInfo = classList.getJSONObject(selection);
                             className = classInfo.getString("name");
