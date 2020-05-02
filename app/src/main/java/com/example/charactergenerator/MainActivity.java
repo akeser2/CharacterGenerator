@@ -23,7 +23,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     Button generate;
-
+    private String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         final TextView textView = findViewById(R.id.text_space);
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://www.dnd5eapi.co/api/classes";
+        url ="https://www.dnd5eapi.co/api/classes";
 
 // Request a string response from the provided URL.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -61,10 +61,11 @@ public class MainActivity extends AppCompatActivity {
                             classList = response.getJSONArray("results");
                             classInfo = classList.getJSONObject(selection);
                             className = classInfo.getString("name");
+                            url+="/" + className.toLowerCase();
                         } catch (JSONException e) {
                             textView.setText("Response: " + e);
                         }
-                        textView.setText("Response: " + className);
+                        textView.setText("Response: " + className + "\n" + url);
                     }
                 }, new Response.ErrorListener() {
             @Override
