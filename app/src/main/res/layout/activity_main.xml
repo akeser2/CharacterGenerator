@@ -6,19 +6,157 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/gen_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Character">
-    </Button>
-
-    <TextView
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_below="@id/gen_btn"
+        android:layout_above="@id/layout_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text_space"
+        app:srcCompat="@android:color/holo_blue_light" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_1"
+        app:srcCompat="@android:color/background_light" />
+
+    <Button
+        android:id="@+id/gen_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_toStartOf="@+id/lock"
+        android:layout_toLeftOf="@+id/lock"
+        android:text="Generate Character"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/lock"
+        android:text="Lock"
+        android:textSize="20sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="26dp"
+        android:layout_marginTop="16dp" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/class_lock"
+        android:text="Lock"
         android:layout_below="@id/gen_btn"
-        android:text="Info">
-    </TextView>
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="4dp"/>
+
+    <TextView
+        android:id="@+id/hit_die"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gen_btn"
+        android:layout_toLeftOf="@id/class_lock"
+        android:layout_marginLeft="8dp"
+        android:text="HP:"/>
+
+    <TextView
+        android:id="@+id/class_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Class:"
+        android:layout_below="@id/gen_btn"
+        android:textSize="20sp"
+        android:layout_marginTop="21dp"
+        android:layout_marginLeft="4dp"/>
+
+    <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/class_name"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/attribute_0"
+            android:text="STR:">
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/attribute_1"
+            android:text="DEX:">
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/attribute_2"
+            android:text="CON:">
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/attribute_3"
+            android:text="INT:">
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/attribute_4"
+            android:text="WIS:">
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/attribute_5"
+            android:text="CHA:">
+        </TextView>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_2"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_1">
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/race_lock"
+            android:text="Lock"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="4dp"/>
+        <TextView
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/race_lock"
+            android:id="@+id/race_name"
+            android:textSize="20dp"
+            android:text="Race:" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subrace:"
+            android:layout_below="@id/race_lock"
+            android:id="@+id/subrace_name"/>
+    </RelativeLayout>
+
 
 </RelativeLayout>
