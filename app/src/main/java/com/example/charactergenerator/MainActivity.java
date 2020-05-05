@@ -22,6 +22,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button generate;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private String raceURL;
     private boolean classLock;
     private boolean raceLock;
+    private String classDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (!isRaceLocked()) {
                     genRace(raceRandom);
+                    setEquip();
                 }
             }
         });
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         final TextView setClass = findViewById(R.id.class_name);
         RequestQueue queue = Volley.newRequestQueue(this);
-        classURL ="https://www.dnd5eapi.co/api/classes";
+        classURL = "https://www.dnd5eapi.co/api/classes";
         // Request a string response from the provided URL.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, classURL, null, new Response.Listener<JSONObject>() {
@@ -64,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray classList;
                     JSONObject classInfo;
                     String className;
-                    String classDetails;
 
                     @Override
                     public void onResponse(JSONObject response) {
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                             classList = response.getJSONArray("results");
                             classInfo = classList.getJSONObject(selection);
                             className = classInfo.getString("name");
-                            classDetails = classURL+="/" + className.toLowerCase();
+                            classDetails = classURL += "/" + className.toLowerCase();
                             setHitDie(classDetails);
                             setAbilities();
                         } catch (JSONException e) {
@@ -82,16 +85,17 @@ public class MainActivity extends AppCompatActivity {
                         setClass.setText("Class: " + className);
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error);
-                setClass.setText("That didn't work!");
-            }
-        });
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println(error);
+                        setClass.setText("That didn't work!");
+                    }
+                });
 
 // Add the request to the RequestQueue.
         queue.add(jsonObjectRequest);
     }
+
     private void setHitDie(String url) {
         final TextView setHitDie = findViewById(R.id.hit_die);
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -122,18 +126,20 @@ public class MainActivity extends AppCompatActivity {
 // Add the request to the RequestQueue.
         queue.add(jsonObjectRequest);
     }
+
     private void genRace(final int selection) {
         // Instantiate the RequestQueue.
         final TextView setClass = findViewById(R.id.race_name);
         RequestQueue queue = Volley.newRequestQueue(this);
-        raceURL ="https://www.dnd5eapi.co/api/races";
+        raceURL = "https://www.dnd5eapi.co/api/races";
         // Request a string response from the provided URL.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, raceURL, null, new Response.Listener<JSONObject>() {
                     //Variables needed to get down to specific item
                     JSONArray raceList;
                     JSONObject raceInfo;
-                    String raceName;;
+                    String raceName;
+                    ;
 
                     @Override
                     public void onResponse(JSONObject response) {
@@ -158,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
 // Add the request to the RequestQueue.
         queue.add(jsonObjectRequest);
     }
+
     public boolean isClassLocked() {
         final ToggleButton toggle = findViewById(R.id.class_lock);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -171,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
         });
         return classLock;
     }
+
     public boolean isRaceLocked() {
         final ToggleButton toggle = findViewById(R.id.race_lock);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -184,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
         });
         return raceLock;
     }
+
     public void setAbilities() {
         AddInfo info = new AddInfo();
         int[] abilities = info.abilityScores();
@@ -205,4 +214,19 @@ public class MainActivity extends AppCompatActivity {
         TextView cha = findViewById(R.id.attribute_5);
         cha.setText("CHA: " + abilities[5]);
     }
+    public void setEquip() {
+        AddInfo info = new AddInfo();
+        String[] items = info.items();
+        TextView opt1 = findViewById(R.id.eqp1);
+        opt1.setText("1. " + items[0]);
+        TextView opt2 = findViewById(R.id.eqp2);
+        opt2.setText("2. " + items[1]);
+        TextView opt3 = findViewById(R.id.eqp3);
+        opt3.setText("3. " + items[2]);
+        TextView opt4 = findViewById(R.id.eqp4);
+        opt4.setText("4. " + items[3]);
+        TextView opt5 = findViewById(R.id.eqp5);
+        opt5.setText("5. " + items[4]);
+    }
+
 }
