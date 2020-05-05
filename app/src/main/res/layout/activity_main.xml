@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView1"
+        android:layout_marginTop="16dp"
         android:layout_below="@id/gen_btn"
         android:layout_above="@id/layout_2"
         android:layout_width="match_parent"
@@ -25,8 +26,8 @@
         android:id="@+id/gen_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_toStartOf="@+id/lock"
@@ -41,25 +42,27 @@
         android:text="Lock"
         android:textSize="20sp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="26dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp" />
 
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/class_lock"
         android:text="Lock"
+        android:layout_marginTop="14dp"
         android:layout_below="@id/gen_btn"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="4dp"/>
+        android:layout_marginRight="12dp"/>
 
     <TextView
         android:id="@+id/hit_die"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/gen_btn"
+        android:layout_marginTop="18dp"
         android:layout_toLeftOf="@id/class_lock"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="12dp"
         android:text="HP:"/>
 
     <TextView
@@ -69,7 +72,7 @@
         android:text="Class:"
         android:layout_below="@id/gen_btn"
         android:textSize="20sp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="4dp"/>
 
     <LinearLayout
@@ -77,9 +80,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/class_name"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
         
         <TextView
@@ -130,9 +134,11 @@
 
     <RelativeLayout
         android:id="@+id/layout_2"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/layout_1">
 
         <ToggleButton
@@ -149,14 +155,85 @@
             android:layout_toLeftOf="@id/race_lock"
             android:id="@+id/race_name"
             android:textSize="20dp"
-            android:text="Race:" />
+            android:text="Race:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/race_name"
+            android:text="Starting Equipment"
+            android:layout_marginTop="36dp"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:textSize="30sp">
+        </TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_3"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_2"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="12dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Subrace:"
-            android:layout_below="@id/race_lock"
-            android:id="@+id/subrace_name"/>
-    </RelativeLayout>
-
+            android:id="@+id/eqp1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="12dp"
+            android:textSize="20sp"
+            android:text="1."
+            android:layout_weight="1">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eqp2"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="12dp"
+            android:textSize="20sp"
+            android:text="2."
+            android:layout_weight="1">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eqp3"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="12dp"
+            android:textSize="20sp"
+            android:text="3."
+            android:layout_weight="1">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eqp4"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="12dp"
+            android:textSize="20sp"
+            android:text="4."
+            android:layout_weight="1">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eqp5"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="12dp"
+            android:textSize="20sp"
+            android:text="5."
+            android:layout_weight="1">
+        </TextView>
+    </LinearLayout>
 
 </RelativeLayout>
